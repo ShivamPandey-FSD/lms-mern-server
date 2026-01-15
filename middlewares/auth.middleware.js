@@ -46,8 +46,9 @@ const isAuthenticated = catchAsyncError(async (req, res, next) => {
 });
 
 const isAuthorized = (...roles) => {
- return (req, res, next) => {
-  if (!roles.includes(req.user.role)) {
+ return async (req, res, next) => {
+  const user = await User.findById(req.user);
+  if (!roles.includes(user.role)) {
    return next(new ErrorHandler(`User with this role ${req.user.role} not allowed to access this resource`, 400));
   }
   next();

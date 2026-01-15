@@ -15,7 +15,7 @@ const bookSchema = new mongoose.Schema({
   type: String,
   required: true
  },
- password: {
+ price: {
   type: Number,
   required: true
  },
@@ -31,4 +31,4 @@ const bookSchema = new mongoose.Schema({
 
 const Book = mongoose.model("Book", bookSchema);
 
-export default Book;
+module.exports = Book;
