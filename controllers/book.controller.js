@@ -18,8 +18,6 @@ const addBook = catchAsyncError(async (req, res, next) => {
   quantity
  });
 
- console.log(book)
-
  res.status(201).json({
   success: true,
   message: "Book added successfully",
