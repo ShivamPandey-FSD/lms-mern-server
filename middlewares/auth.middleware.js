@@ -45,4 +45,13 @@ const isAuthenticated = catchAsyncError(async (req, res, next) => {
  next();
 });
 
-module.exports = isAuthenticated;
+const isAuthorized = (...roles) => {
+ return (req, res, next) => {
+  if (!roles.includes(req.user.role)) {
+   return next(new ErrorHandler(`User with this role ${req.user.role} not allowed to access this resource`, 400));
+  }
+  next();
+ }
+}
+
+module.exports = {isAuthenticated, isAuthorized};
