@@ -5,6 +5,7 @@ const connectDb = require('./config/db');
 const errorMiddleware = require('./middlewares/errorMiddleware');
 const authRouter = require('./routes/auth.route');
 const bookRouter = require('./routes/book.route');
+const borrowRouter = require('./routes/borrow.route');
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/book', bookRouter);
+app.use('/api/v1/borrow', borrowRouter);
 
 connectDb();
 
